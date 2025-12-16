@@ -1,0 +1,406 @@
+{
+    "descriptions": [
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI 30-dir pepolar #1 TOP DOWN"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI_30-dir_pepolar_#1_TOP_DOWN"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "30-dir DTI Pepolar #1"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTIHR2.5"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DiffHR2.5NoSense"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DiffHR2.5NoSense_Default"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "45-dir MultiShell Pepolar"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI_siemens_TClessdistort"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_PA",
+            "suffix": "dwi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI P-to-A Main Scan"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "DTI 30-dir pepolar #2 TOP DOWN"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "DTI_30-dir_pepolar_#2_TOP_DOWN"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "30-dir DTI Pepolar #2"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d-diff-30Dir-A>>P-b1000"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_30dir_NewA-P"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "DTI A-to-P PE 30 Direction"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_30dir_NewA-P_EXP"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_30dir_shortTR"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "dwi",
+            "id": "dwi_AP",
+            "suffix": "dwi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_30dir_shortTR_EXP"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_bold_B0_map"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "B0_A"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_B0_NewA-P"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "B0_AD"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "DTI A-to-P PE Calibration"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "DTI P-to-A PE Calibration"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j",
+                "IntendedFor": "dwi_AP"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-AP",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_B0_map"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j-",
+                "IntendedFor": "dwi_PA"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "B0_P"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j",
+                "IntendedFor": "dwi_AP"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "ep2d_diff_B0_NewP-A"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j",
+                "IntendedFor": "dwi_AP"
+            }
+        },
+        {
+            "datatype": "fmap",
+            "suffix": "epi",
+            "custom_entities": "dir-PA",
+            "criteria": {
+                "SeriesDescription": "B0_PD"
+            },
+            "sidecar_changes": {
+                "PhaseEncodingDirection": "j",
+                "IntendedFor": "dwi_AP"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "IRSPGR PROMO"
+            }
+        },
+        { 
+            "datatype": "anat",
+            "suffix": "T2w",
+            "criteria": {
+                "SeriesDescription": "SAG CUBE PROMO"
+            }
+        },
+        { 
+            "datatype": "anat",
+            "suffix": "T2w",
+            "criteria": {
+                "SeriesDescription": "Sag CUBE"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "IRSPGR_PROMO"
+            }
+        },
+        { 
+            "datatype": "anat",
+            "suffix": "T2w",
+            "criteria": {
+                "SeriesDescription": "SAG_CUBE_PROMO"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRAGE"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRAGE_160sl_7deg"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRAGE-1mm-TR2170-140Hzp78-from-APP"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "IRSPGR_PROMOlike"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRAGE-1mm-TR2170-140Hzp78"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRage_160sl_7deg"
+            }
+        },
+        {
+            "datatype": "anat",
+            "suffix": "T1w",
+            "criteria": {
+                "SeriesDescription": "MPRAGE_1mm_TR2500_140Hzp78"
+            }
+        }
+    ]
+}
