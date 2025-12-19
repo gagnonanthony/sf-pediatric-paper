@@ -13,6 +13,7 @@ import shutil
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import axes, font_manager
+import numpy as np
 import seaborn as sns
 from tqdm import tqdm
 
@@ -41,6 +42,14 @@ def _build_arg_parser():
     p.add_argument("-f", "--force",
                    action="store_true",
                    help="Overwrite output folder.",
+                   default=False)
+    p.add_argument("--log_age",
+                   action="store_true",
+                   help="Use logarithmic scale for age axis.",
+                   default=False)
+    p.add_argument("--log_y",
+                   action="store_true",
+                   help="Use logarithmic scale for y axis.",
                    default=False)
 
     return p
@@ -163,21 +172,35 @@ def main():
         sns.scatterplot(data=df, x="age", y=metric, ax=ax[0, i],
                         hue="cohort", style="sex", palette=cohort_cmap, legend=False,
                         hue_order=["MYRNA", "BCP", "ABCD", "GESTE", "BANDA", "PING"])
-        ax[0, i].set_ylim(ylim_min, ylim_max)
+        if not args.log_y:
+            ax[0, i].set_ylim(ylim_min, ylim_max)
+        else:
+            ax[0, i].set_yscale('log')
         ax[0, i].set_ylabel(y_labels.get(metric, metric), fontsize=14, fontweight='bold')
         ax[0, i].set_xlabel("")
-        ax[0, i].set_xticks([0, 2, 4, 6, 8, 10, 12, 14, 16, 18])
-        ax[0, i].tick_params(axis='both', which='major', labelsize=10)
-
-        # Plot the centiles.
+        if args.log_age:
+            ax[0, i].set_xscale('log')
+            ax[0, i].set_xticks([0.1, 0.5, 1, 2, 5, 10, 18])
+            ax[0, i].set_xticklabels(['0.1', '0.5', '1', '2', '5', '10', '18'])
+        else:
+            ax[0, i].set_xticks([0, 2, 4, 6, 8, 10, 12, 14, 16, 18])
+            # Plot the centiles.
         sns.lineplot(data=results_dfs[metric], x="age", y=0.05, ax=ax[1, i], color=rocket_cmap[0], linestyle='--', linewidth=2, legend=False)
         sns.lineplot(data=results_dfs[metric], x="age", y=0.5, ax=ax[1, i], color=rocket_cmap[5], linestyle='-', linewidth=2, legend=False)
         sns.lineplot(data=results_dfs[metric], x="age", y=0.95, ax=ax[1, i], color=rocket_cmap[0], linestyle='--', linewidth=2, legend=False)
         ax[1, i].fill_between(results_dfs[metric]['age'], results_dfs[metric][0.05], results_dfs[metric][0.95], color=rocket_cmap[0], alpha=0.4, zorder=-1)
-        ax[1, i].set_ylim(ylim_min, ylim_max)
+        if not args.log_y:
+            ax[1, i].set_ylim(ylim_min, ylim_max)
+        else:
+            ax[1, i].set_yscale('log')
         ax[1, i].set_xlabel("Age (years)", fontsize=14, fontweight='bold')
         ax[1, i].set_ylabel(y_labels.get(metric, metric), fontsize=14, fontweight='bold')
-        ax[1, i].set_xticks([0, 2, 4, 6, 8, 10, 12, 14, 16, 18])
+        if args.log_age:
+            ax[1, i].set_xscale('log')
+            ax[1, i].set_xticks([0.1, 0.5, 1, 2, 5, 10, 18])
+            ax[1, i].set_xticklabels(['0.1', '0.5', '1', '2', '5', '10', '18'])
+        else:
+            ax[1, i].set_xticks([0, 2, 4, 6, 8, 10, 12, 14, 16, 18])
         ax[1, i].tick_params(axis='both', which='major', labelsize=10)
 
         for row in ax:
@@ -185,7 +208,7 @@ def main():
                 a.spines['top'].set_visible(False)
                 a.spines['right'].set_visible(False)
                 a.spines[["left", "bottom"]].set_linewidth(2)
-                if a.get_ylim()[1] < 0.01:
+                if a.get_ylim()[1] < 0.01 and not args.log_y:
                     a.ticklabel_format(axis='y', style='scientific', scilimits=(0,0))
 
         # Add global legends: sex, cohorts and centile labels (compact)
@@ -205,7 +228,7 @@ def main():
             a.spines['top'].set_visible(False)
             a.spines['right'].set_visible(False)
             a.spines[["left", "bottom"]].set_linewidth(2)
-            if a.get_ylim()[1] < 0.01:
+            if a.get_ylim()[1] < 0.01 and not args.log_y:
                 a.ticklabel_format(axis='y', style='scientific', scilimits=(0,0))
 
     # Add global legends: sex, cohorts and centile labels (compact)
@@ -228,7 +251,7 @@ def main():
     ax[1, 0].text(-0.2, 1.07, row_labels[1], transform=ax[1, 0].transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
 
     # Some adjustements to space between subplots.
-    plt.subplots_adjust(wspace=0.25)
+    plt.subplots_adjust(wspace=0.30)
 
     #plt.tight_layout(rect=[0, 0, 1, 0.97])
     plot_path = os.path.join(args.output_dir, "network_GAMLSS_centiles.png")

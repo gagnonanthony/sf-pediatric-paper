@@ -266,10 +266,11 @@ def main():
         labels_centile = ["Median", "5th/95th Percentiles"]
         fig.legend(handles_centile, labels_centile, loc="upper left", bbox_to_anchor=(0.90, 0.36), ncol=1, fontsize=12, frameon=False)
 
-        handles_centile = [plt.Line2D([0], [0], color=cohort_cmap[4], markersize=8, lw=3, linestyle='-', label='Multi-shell'),
-                            plt.Line2D([0], [0], color=cohort_cmap[1], markersize=8, lw=3, linestyle='-', label='Single-shell')]
-        labels_centile = ["Multi-shell", "Single-shell"]
-        fig.legend(handles_centile, labels_centile, loc="upper left", bbox_to_anchor=(0.90, 0.26), ncol=1, fontsize=12, frameon=False)
+        if "afd_fixel" in args.metric:
+            handles_centile = [plt.Line2D([0], [0], color=cohort_cmap[4], markersize=8, lw=3, linestyle='-', label='Multi-shell'),
+                                plt.Line2D([0], [0], color=cohort_cmap[1], markersize=8, lw=3, linestyle='-', label='Single-shell')]
+            labels_centile = ["Multi-shell", "Single-shell"]
+            fig.legend(handles_centile, labels_centile, loc="upper left", bbox_to_anchor=(0.90, 0.26), ncol=1, fontsize=12, frameon=False)
 
         row_labels = ['a', 'b']
         ax[0, 0].text(-0.2, 1.07, row_labels[0], transform=ax[0, 0].transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
