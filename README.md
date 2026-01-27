@@ -1,6 +1,6 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![R](https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white)
-[![Static Badge](https://img.shields.io/badge/bioarXiv-10?style=flat&logo=arxiv&logoColor=%23B31B1B&label=10.64898%2F2026.01.19.700454&color=%23B31B1B&link=https%3A%2F%2Fdoi.org%2F10.64898%2F2026.01.19.700454)](https://doi.org/10.64898/2026.01.19.700454)
+[![Static Badge](https://img.shields.io/badge/bioarXiv-10?style=for-the-badge&logo=arxiv&logoColor=%23B31B1B&label=10.64898%2F2026.01.19.700454&color=%23B31B1B&link=https%3A%2F%2Fdoi.org%2F10.64898%2F2026.01.19.700454)](https://doi.org/10.64898/2026.01.19.700454)
 
 # sf-pediatric paper - Code Repository
 
