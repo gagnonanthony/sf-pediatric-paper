@@ -71,7 +71,9 @@ AddNodesAttributes -h
 ## Citation
 
 If you use this code, please cite our paper:
-[Citation information to be added upon publication]
+
+Gagnon, A., Boré, A., Valcourt Caron, A., Edde, M., Thoumyre, S., Lepage, J.-F., Talati, A., Posner, J., Ouellet, A., Brunet, M. A., Takser, L., Rheault, F., & Descoteaux, M. (2026). sf-pediatric: A robust and age-adaptable end-to-end pipeline for pediatric diffusion MRI. bioRxiv. https://doi.org/10.64898/2026.01.19.700454
+
 
 ## Contact
 
