@@ -38,21 +38,8 @@ message("Loading data...")
 # Load the data.
 df <- read.csv(opt$input)
 
-# Do sanity checks that opt$metric, age, sex, cohort columns exist in df
-if (opt$site == "TRUE") {
-    message("Using site as random effect")
-    if (!"site" %in% names(df)) {
-        stop("Site column not found in data but --site option is set")
-    }
-    rnd_var = "site"
-} else {
-    message("Using cohort as random effect")
-    if (!"cohort" %in% names(df)) {
-        stop("Cohort column not found in data but --site option is not set")
-    }
-    rnd_var = "cohort"
-}
-required_cols <- c(opt$metric, "age", "sex", rnd_var)
+# Do sanity checks that opt$metric, age, sex columns exist in df
+required_cols <- c(opt$metric, "age", "sex")
 missing_cols <- setdiff(required_cols, names(df))
 if (length(missing_cols) > 0) {
     stop(paste("Missing required columns in data:", paste(missing_cols, collapse = ", ")))
@@ -80,12 +67,8 @@ if (nrow(df_clean) < nrow(df)) {
 
 # Ensure factor terms used in model formulas have at least two levels.
 sex_nlevels <- nlevels(factor(df$sex))
-rnd_nlevels <- nlevels(factor(df[[rnd_var]]))
 if (sex_nlevels < 2) {
     stop("Column 'sex' has fewer than 2 levels after cleaning; factor(sex) cannot be used in the model")
-}
-if (rnd_nlevels < 2) {
-    stop(paste0("Column '", rnd_var, "' has fewer than 2 levels after cleaning; random(factor(", rnd_var, ")) cannot be used in the model"))
 }
 
 message("Fitting GAMLSS model...")
@@ -101,15 +84,15 @@ for (deg in 1:3) {
         model <- tryCatch({
             if (!is.null(prev_model)) {
                 gamlss(
-                    formula=as.formula(paste(opt$metric, "~ fp(age, npoly=", deg, ") + factor(sex) + random(factor(", rnd_var, "))")),
-                    sigma.formula=as.formula(paste("~ fp(age, npoly=", sig_deg, ") + factor(sex) + random(factor(", rnd_var, "))")),
+                    formula=as.formula(paste(opt$metric, "~ fp(age, npoly=", deg, ") + factor(sex)")),
+                    sigma.formula=as.formula(paste("~ fp(age, npoly=", sig_deg, ") + factor(sex)")),
                     family=GG, data=df, control=gamlss.control(n.cyc=200, trace=FALSE), method=mixed(10, 50),
                     mu.start=fitted(prev_model, "mu"), sigma.start=fitted(prev_model, "sigma"), nu.start=fitted(prev_model, "nu")
                 )
             } else {
                 gamlss(
-                    formula=as.formula(paste(opt$metric, "~ fp(age, npoly=", deg, ") + factor(sex) + random(factor(", rnd_var, "))")),
-                    sigma.formula=as.formula(paste("~ fp(age, npoly=", sig_deg, ") + factor(sex) + random(factor(", rnd_var, "))")),
+                    formula=as.formula(paste(opt$metric, "~ fp(age, npoly=", deg, ") + factor(sex)")),
+                    sigma.formula=as.formula(paste("~ fp(age, npoly=", sig_deg, ") + factor(sex)")),
                     family=GG, data=df, control=gamlss.control(n.cyc=200, trace=FALSE), method=mixed(10, 50)
                 )
             }
@@ -316,11 +299,6 @@ sex_ref <- if ("sex" %in% names(df)) {
 } else {
     NA
 }
-cohort_ref <- if (rnd_var %in% names(df)) {
-    levels(factor(df[[rnd_var]]))[1]
-} else {
-    NA
-}
 
 # Create an age grid spanning the 0 - 18 age range.
 age_min <- min(df$age, na.rm = TRUE)
@@ -330,7 +308,6 @@ age_grid <- seq(age_min, age_max, length.out = 1000)
 # Build newdata for prediction. Use reference levels for sex and cohort.
 newdata <- data.frame(age = age_grid)
 if (!is.na(sex_ref)) newdata$sex <- sex_ref
-if (!is.na(cohort_ref)) newdata[[rnd_var]] <- cohort_ref
 
 # Define centile probabilities to plot (including median)
 probs <- c(0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99)
