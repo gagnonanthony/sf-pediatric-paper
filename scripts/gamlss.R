@@ -323,7 +323,7 @@ cohort_ref <- if (rnd_var %in% names(df)) {
 }
 
 # Create an age grid spanning the 0 - 18 age range.
-age_min <- min(df$age, na.rm = TRUE)
+age_min <- 0.0211538461538461 # Age of youngest participant in the dataset
 age_max <- 18 # Keeping max at 18 to avoid extrapolation
 age_grid <- seq(age_min, age_max, length.out = 1000)
 
@@ -359,27 +359,27 @@ cent_df <- data.frame(
 obs_df <- df
 
 # Make the plot: points + centile lines. Highlight the median (0.5).
-plt <- ggplot() +
-    geom_point(data = obs_df, aes(x = age, y = obs_df[[opt$metric]]), alpha = 0.35, size = 0.9, color = "grey30") +
-    geom_line(data = cent_df, aes(x = age, y = metric, group = prob, color = prob, linetype = prob), linewidth = 1) +
-    scale_color_manual(values = c(
-        "0.01" = "#d73027", "0.05" = "#fc8d59", "0.1" = "#fdae61",
-        "0.25" = "#fee08b", "0.5" = "#3288bd", "0.75" = "#91bfdb",
-        "0.9" = "#66c2a5", "0.95" = "#1a9850", "0.99" = "#006837"
-    )) +
-    scale_linetype_manual(values = c(
-        "0.01" = "dashed", "0.05" = "dashed", "0.1" = "dashed",
-        "0.25" = "dotdash", "0.5" = "solid", "0.75" = "dotdash",
-        "0.9" = "dashed", "0.95" = "dashed", "0.99" = "dashed"
-    )) +
-    guides(color = guide_legend(title = "Centile"), linetype = "none") +
-    labs(x = "Age", y = paste(opt$metric), title = paste("Predicted centiles for", opt$metric, "by age"), subtitle = paste("Reference sex:", sex_ref)) +
-    # Set ylimits to 10% lower than min observed and 10% higher than max observed
-    coord_cartesian(ylim = c(min(obs_df[[opt$metric]]) * 0.9, max(obs_df[[opt$metric]]) * 1.1))
+#plt <- ggplot() +
+#    geom_point(data = obs_df, aes(x = age, y = obs_df[[opt$metric]]), alpha = 0.35, size = 0.9, color = "grey30") +
+#    geom_line(data = cent_df, aes(x = age, y = metric, group = prob, color = prob, linetype = prob), linewidth = 1) +
+#    scale_color_manual(values = c(
+#        "0.01" = "#d73027", "0.05" = "#fc8d59", "0.1" = "#fdae61",
+#        "0.25" = "#fee08b", "0.5" = "#3288bd", "0.75" = "#91bfdb",
+#        "0.9" = "#66c2a5", "0.95" = "#1a9850", "0.99" = "#006837"
+#    )) +
+#    scale_linetype_manual(values = c(
+#        "0.01" = "dashed", "0.05" = "dashed", "0.1" = "dashed",
+#        "0.25" = "dotdash", "0.5" = "solid", "0.75" = "dotdash",
+#        "0.9" = "dashed", "0.95" = "dashed", "0.99" = "dashed"
+#    )) +
+#    guides(color = guide_legend(title = "Centile"), linetype = "none") +
+#    labs(x = "Age", y = paste(opt$metric), title = paste("Predicted centiles for", opt$metric, "by age"), subtitle = paste("Reference sex:", sex_ref)) +
+#    # Set ylimits to 10% lower than min observed and 10% higher than max observed
+#    coord_cartesian(ylim = c(min(obs_df[[opt$metric]]) * 0.9, max(obs_df[[opt$metric]]) * 1.1))
 
 # Make the median thicker and on top by adding it separately
-median_df <- subset(cent_df, prob == "0.5")
-plt <- plt + geom_line(data = median_df, aes(x = age, y = metric), color = "#000000", linewidth = 1.5)
+#median_df <- subset(cent_df, prob == "0.5")
+#plt <- plt + geom_line(data = median_df, aes(x = age, y = metric), color = "#000000", linewidth = 1.5)
 
 # Save the centile data to CSV
 # Append "site" or "cohort" to the filename based on the random effect used
@@ -390,12 +390,12 @@ if (opt$site == "TRUE") {
 }
 
 # Print and save the plot
-print(plt)
-if (opt$site == "TRUE") {
-    ggsave(filename = file.path(opt$output, paste0(opt$metric, "_centiles_by_age_site.png", sep="")), plot = plt, width = 8, height = 6, dpi = 300)
-} else {
-    ggsave(filename = file.path(opt$output, paste0(opt$metric, "_centiles_by_age_cohort.png", sep="")), plot = plt, width = 8, height = 6, dpi = 300)
-}
+#print(plt)
+#if (opt$site == "TRUE") {
+#    ggsave(filename = file.path(opt$output, paste0(opt$metric, "_centiles_by_age_site.png", sep="")), plot = plt, width = 8, height = 6, dpi = 300)
+#} else {
+#    ggsave(filename = file.path(opt$output, paste0(opt$metric, "_centiles_by_age_cohort.png", sep="")), plot = plt, width = 8, height = 6, dpi = 300)
+#}
 
 # Message to user
 message("Saved results to", paste0(opt$output), sep="")

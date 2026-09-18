@@ -26,14 +26,14 @@ for sub in $subjects; do
         isovf_map_priors=$folder_priors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-isovf_dwimap.nii.gz
         odi_map_priors=$folder_priors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-odi_dwimap.nii.gz
         brain_mask_priors=$folder_priors/$sub/$ses/anat/${sub}_${ses}_space-DWI_label-WM*mask.nii.gz
-        rmse_priors=$(mrstats $rmse_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        rmse_priors_std=$(mrstats $rmse_map_priors -mask $brain_mask_priors -output std -ignorezero -quiet)
-        nrmse_priors=$(mrstats $nrmse_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        nrmse_priors_std=$(mrstats $nrmse_map_priors -mask $brain_mask_priors -output std -ignorezero -quiet)
-        icvf_priors=$(mrstats $icvf_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        ecvf_priors=$(mrstats $ecvf_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        isovf_priors=$(mrstats $isovf_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        odi_priors=$(mrstats $odi_map_priors -mask $brain_mask_priors -output mean -ignorezero -quiet)
+        rmse_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $rmse_map_priors -mask - -output mean -ignorezero -quiet)
+        rmse_priors_std=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $rmse_map_priors -mask - -output std -ignorezero -quiet)
+        nrmse_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $nrmse_map_priors -mask - -output mean -ignorezero -quiet)
+        nrmse_priors_std=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $nrmse_map_priors -mask - -output std -ignorezero -quiet)
+        icvf_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $icvf_map_priors -mask - -output mean -ignorezero -quiet)
+        ecvf_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $ecvf_map_priors -mask - -output mean -ignorezero -quiet)
+        isovf_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $isovf_map_priors -mask - -output mean -ignorezero -quiet)
+        odi_priors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $odi_map_priors -mask - -output mean -ignorezero -quiet)
 
         rmse_map_nopriors=$folder_nopriors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-rmse_dwimap.nii.gz
         nrmse_map_nopriors=$folder_nopriors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-nrmse_dwimap.nii.gz
@@ -41,14 +41,14 @@ for sub in $subjects; do
         ecvf_map_nopriors=$folder_nopriors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-ecvf_dwimap.nii.gz
         isovf_map_nopriors=$folder_nopriors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-isovf_dwimap.nii.gz
         odi_map_nopriors=$folder_nopriors/$sub/$ses/dwi/${sub}_${ses}_model-noddi_param-odi_dwimap.nii.gz
-        rmse_nopriors=$(mrstats $rmse_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet) # Using the same brain mask for both to ensure comparability
-        rmse_nopriors_std=$(mrstats $rmse_map_nopriors -mask $brain_mask_priors -output std -ignorezero -quiet)
-        nrmse_nopriors=$(mrstats $nrmse_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        nrmse_nopriors_std=$(mrstats $nrmse_map_nopriors -mask $brain_mask_priors -output std -ignorezero -quiet)
-        icvf_nopriors=$(mrstats $icvf_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        ecvf_nopriors=$(mrstats $ecvf_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        isovf_nopriors=$(mrstats $isovf_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet)
-        odi_nopriors=$(mrstats $odi_map_nopriors -mask $brain_mask_priors -output mean -ignorezero -quiet)
+        rmse_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $rmse_map_nopriors -mask - -output mean -ignorezero -quiet) # Using the same brain mask for both to ensure comparability
+        rmse_nopriors_std=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $rmse_map_nopriors -mask - -output std -ignorezero -quiet)
+        nrmse_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $nrmse_map_nopriors -mask - -output mean -ignorezero -quiet)
+        nrmse_nopriors_std=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $nrmse_map_nopriors -mask - -output std -ignorezero -quiet)
+        icvf_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $icvf_map_nopriors -mask - -output mean -ignorezero -quiet)
+        ecvf_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $ecvf_map_nopriors -mask - -output mean -ignorezero -quiet)
+        isovf_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $isovf_map_nopriors -mask - -output mean -ignorezero -quiet)
+        odi_nopriors=$(mrthreshold -abs 0.5 $brain_mask_priors - | mrstats $odi_map_nopriors -mask - -output mean -ignorezero -quiet)
 
         # Write the results to the output file
         echo "$sub,$ses,$rmse_priors,$rmse_priors_std,$nrmse_priors,$nrmse_priors_std,$icvf_priors,$ecvf_priors,$isovf_priors,$odi_priors,$rmse_nopriors,$rmse_nopriors_std,$nrmse_nopriors,$nrmse_nopriors_std,$icvf_nopriors,$ecvf_nopriors,$isovf_nopriors,$odi_nopriors" >> $output_file
